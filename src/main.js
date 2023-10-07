@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const path = require('path');
 
 if (require('electron-squirrel-startup')) {
@@ -31,6 +31,10 @@ app.on('window-all-closed', () => {
 
 app.whenReady().then(() => {
   console.log('app ready')
+
+  globalShortcut.register('CommandOrControl+F', () => {
+    mainWindow.setFullScreen(!mainWindow.isFullScreen())
+  })
 
   createMainWindow()
 
